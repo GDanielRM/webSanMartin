@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row text-center mt-5">
+        <div class="col">
+            <h2>Productos</h2>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-2">
+            <label class="from-label">Id</label>
+            <input type="text" class="form-control" [(ngModel)]="idProduct" disabled="true">
+        </div>
+        <div class="col-md-2">
+            <label class="from-label">Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="name">
+        </div>
+        <div class="col-md-2">
+            <label class="from-label">Descripcion</label>
+            <input type="text" class="form-control" [(ngModel)]="description">
+        </div>
+        <div class="col-md-2">
+            <label class="from-label">Precio</label>
+            <input type="text" class="form-control" [(ngModel)]="price">
+        </div>
+        <div class="col-md-2">
+            <label class="from-label">Existencia</label>
+            <input type="text" class="form-control" [(ngModel)]="exist">
+        </div>
+        <div class="col-md-2">
+            <label class="from-label">Tipo</label>
+            <select class="form-select" [(ngModel)]="typeSelected">
+                <option selected value=0>Seleccione un tipo</option>
+                <option *ngFor="let type of productTypes" [ngValue]="type.Id" [selected]="type.Id == typeSelected">{{type.NombreTipoProducto}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <button class="btn btn-success" type="button" (click)="crea()">Crear</button>
+            <button class="btn btn-warning m-2" type="button" (click)="actualiza()">Modificar</button>
+            <button class="btn btn-danger" type="button" (click)="elimina()">Eliminar</button>
+            <button class="btn btn-primary m-2" type="button" (click)="clean()">Limpiar</button>
+        </div>
+
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <table id="dtMascota" class="table table-striped" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Existencia</th>
+                        <th>Tipo</th>
+                        <th>Fecha Registro</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products">
+                        <td>{{product.Id}}</td>
+                        <td>{{product.NombreProducto}}</td>
+                        <td>{{product.DescripcionProducto}}</td>
+                        <td>{{product.Precio | currency}}</td>
+                        <td>{{product.Existencia}}</td>
+                        <td>{{product.TipoProducto}}</td>
+                        <td>{{product.FechaRegistro | date:'dd/MM/yyyy'}}</td>
+                        <td><button class="btn btn-primary m-2" type="button" (click)="selectProduct(product.Id)">Seleccionar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
